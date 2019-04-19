@@ -7,14 +7,14 @@ const algorithm = 'aes-256-cbc',
     password = process.env.PASSWORD, // 32 characters min
     fileName = process.env.FILENAME,
     url = process.env.URL,
-    decrypt = crypto.createDecipher(algorithm, password);
+    encrypt = crypto.createCipher(algorithm, password);
 
 console.log('password', JSON.stringify(password));
 
-const writeStream = fs.createWriteStream(path.join(__dirname, fileName));
-const readStream = request.get(url);
+const readStream = fs.createReadStream(path.join(__dirname, fileName), {highWaterMark: 500});
+const writeStream = request.post(url);
 
-readStream.pipe(decrypt).pipe(writeStream);
+readStream.pipe(encrypt).pipe(writeStream);
 
 let upload_progress = 0;
 

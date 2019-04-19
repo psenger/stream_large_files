@@ -10,6 +10,15 @@ This example, fires up a express HTTP server that accepts both _post_ and _get_ 
 
 The file on the server will be called ```new_file.tar.gz```
 
+## Environment 
+
+| Variable name | Purpose |
+|:---------|:--------------|
+| PASSWORD | 32 characters that is a symmetric password |
+| FILENAME | the file name that will be sent, gotten, or saved |
+| URL      | Used by sendIt and getIt to send and get to the URL. eg http://127.0.0.1:3000/ |
+| PORT     | Used by the express server for the port number |
+
 ## Sending
 
 The client code for this example is called ``sendit.js``, which reads a file called ```file.tar.gz```, via streams, and sends it to the server over http.
