@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const request = require('request');
 
-const readStream = fs.createReadStream(path.join(__dirname, 'file.tar.gz'), {highWaterMark: 500});
-const writeStream = request.post('http://127.0.0.1:3000/');
+const writeStream = fs.createWriteStream(path.join(__dirname, 'read_file.tar.gz'));
+const readStream = request.get('http://127.0.0.1:3000/');
 
 readStream.pipe(writeStream);
 
