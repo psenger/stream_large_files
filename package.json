@@ -1,0 +1,31 @@
+{
+  "name": "stream_large_files",
+  "version": "1.0.0",
+  "description": "Stream Large Files Over http",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "sendit": "node sendit.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psenger/stream_large_files.git"
+  },
+  "author": "Philip A Senger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/psenger/stream_large_files/issues"
+  },
+  "homepage": "https://github.com/psenger/stream_large_files#readme",
+  "keywords": [
+    "stream",
+    "express",
+    "example"
+  ],
+  "dependencies": {
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "morgan": "~1.9.0",
+    "request": "^2.88.0"
+  }
+}
