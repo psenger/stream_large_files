@@ -1,20 +1,16 @@
 const fs = require('fs'),
     path = require('path'),
     request = require('request'),
-    crypto = require('crypto');
+    { encryptStream, encrypt } = require('./encrypt');
 
-const algorithm = 'aes-256-cbc',
-    password = process.env.PASSWORD, // 32 characters min
+const password = process.env.PASSWORD,
     fileName = process.env.FILENAME,
-    url = process.env.URL,
-    encrypt = crypto.createCipher(algorithm, password);
-
-console.log('password', JSON.stringify(password));
+    url = process.env.URL;
 
 const readStream = fs.createReadStream(path.join(__dirname, fileName), {highWaterMark: 500});
-const writeStream = request.post(url);
+const writeStream = request.post(url, { headers: { 'File-Name': encrypt(fileName, password)} }); // .post({ url, headers: { 'File-Name': 'foo.txt'} });
 
-readStream.pipe(encrypt).pipe(writeStream);
+readStream.pipe(encryptStream(password)).pipe(writeStream);
 
 let upload_progress = 0;
 

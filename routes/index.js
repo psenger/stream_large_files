@@ -1,35 +1,17 @@
 const {Router} = require('express'),
     fs = require('fs'),
     path = require('path'),
-    crypto = require('crypto');
+    { decryptStream, decrypt } = require('../encrypt');
 
-const algorithm = 'aes-256-cbc',
-    password = process.env.PASSWORD, // 32 characters min
-    fileName = process.env.FILENAME,
+const password = process.env.PASSWORD, // 32 characters min
     router = Router();
 
-console.log('password', JSON.stringify(password));
+if ( password.length !== 32 ) throw new Error('AES Key Must be 256 bytes (32 characters)');
 
 router.post('/', function (req, res, next) {
-    let decrypt = crypto.createDecipher(algorithm, password);
-    req.pipe(decrypt).pipe(fs.createWriteStream(path.join(__dirname, '..', fileName)));
+    const fileName = decrypt( req.header('File-Name'), password );
+    req.pipe(decryptStream(password)).pipe(fs.createWriteStream(path.join(__dirname, '..', fileName)));
     req.on('end', next);
-});
-
-router.get('/', function (req, res, next) {
-    // let encrypt = crypto.createCipheriv(algorithm, password, iv);
-    let encrypt = crypto.createCipher(algorithm, password);
-    const readStream = fs.createReadStream(path.join(__dirname, '..', fileName));
-    let download_progress = 0;
-    readStream.on("data", function (chunk) {
-        download_progress += chunk.length;
-        console.log(new Date(), download_progress);
-    });
-    readStream.on('end', function () {
-        console.log('Finished');
-        next();
-    });
-    readStream.pipe(encrypt).pipe(res);
 });
 
 module.exports = router;
