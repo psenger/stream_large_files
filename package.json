@@ -27,6 +27,8 @@
     "example"
   ],
   "dependencies": {
+    "bluebird": "^3.5.5",
+    "co": "^4.6.0",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "morgan": "~1.9.0",
