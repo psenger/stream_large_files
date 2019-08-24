@@ -1,7 +1,7 @@
 const fs = require('fs'),
     path = require('path'),
     request = require('request'),
-    { encryptStream, encrypt } = require('./encrypt');
+    { encryptStream, encrypt } = require('../src/utils/encrypt');
 
 const password = process.env.PASSWORD,
     fileName = process.env.FILENAME,

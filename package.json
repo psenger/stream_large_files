@@ -2,11 +2,13 @@
   "name": "stream_large_files",
   "version": "1.0.0",
   "description": "Stream Large Files Over http",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "test": "jest",
     "start": "node ./bin/www",
-    "sendIt": "node sendIt.js",
-    "getIt": "node getIt.js"
+    "sendIt": "node client/sendIt.js",
+    "getIt": "node client/getIt.js",
+    "listIt": "node client/listIt.js"
   },
   "engines": {
     "node": ">=10 <12"
@@ -32,6 +34,10 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "morgan": "~1.9.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }

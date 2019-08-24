@@ -12,12 +12,12 @@ The file on the server will be called ```new_file.tar.gz```
 
 ## Environment 
 
-| Variable name | Purpose |
-|:---------|:--------------|
-| PASSWORD | 32 characters that is a symmetric password |
-| FILENAME | the file name that will be sent, gotten, or saved |
-| URL      | Used by sendIt and getIt to send and get to the URL. eg http://127.0.0.1:3000/ |
-| PORT     | Used by the express server for the port number |
+| Variable name   	| Purpose                                                                                                                                    	|
+|-----------------	|--------------------------------------------------------------------------------------------------------------------------------------------	|
+| PASSWORD        	| 32 characters that is a symmetric password                                                                                                 	|
+| SHARE_DIRECTORY 	| The directory containing the files to be read, or uploaded to. Ensure that the permissions for this directory are correct for the process. 	|
+| URL             	| Used by sendIt and getIt to send and get to the URL. eg http://127.0.0.1:3000/                                                             	|
+| PORT            	| Used by the express server for the port number                                                                                             	|
 
 ## Sending
 
