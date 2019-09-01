@@ -38,6 +38,7 @@
     "request-promise": "^4.2.4"
   },
   "devDependencies": {
+    "concat-stream": "^2.0.0",
     "jest": "^24.9.0"
   }
 }
